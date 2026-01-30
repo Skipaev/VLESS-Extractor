@@ -39,8 +39,8 @@
 Автор не несёт ответственности за использование в нарушение условий сервисов.
 
 ### Авторы
-Основная логика и код: Grok (xAI)  
-Значительная помощь в анализе исходного кода Throne и доработке: Claude Opus 4.5 (Anthropic)
+Основная логика и код: Claude Opus 4.5 (Anthropic) 
+Значительная помощь в анализе исходного кода Throne и доработке: Grok (xAI) 
 
 Проект создан в январе 2026 года.
 
@@ -83,7 +83,7 @@ Use only with subscriptions you are officially allowed to access.
 The author is not responsible for any misuse or violation of third-party service terms.
 
 ### Authors
-Core logic and code: Grok (xAI)  
-Major assistance in Throne source code analysis and improvements: Claude Opus 4.5 (Anthropic)
+Core logic and code: Claude Opus 4.5 (Anthropic)  
+Major assistance in Throne source code analysis and improvements: Grok (xAI)
 
 Project created in January 2026.
