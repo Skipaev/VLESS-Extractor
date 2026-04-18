@@ -157,9 +157,22 @@ class SubscriptionProcessor:
         try:
             rest = link[8:]
             name = ""
+            # Отделяем название: ищем первый # который не внутри значения параметра
             if '#' in rest:
-                rest, name = rest.rsplit('#', 1)
-                name = unquote(name)
+                if '?' in rest:
+                    q_pos = rest.index('?')
+                    params_part = rest[q_pos:]
+                    # Ищем # после последнего &
+                    last_amp = params_part.rfind('&')
+                    search_from = q_pos + last_amp + 1 if last_amp > 0 else q_pos
+                    hash_pos = rest.find('#', search_from)
+                    if hash_pos > 0:
+                        name = unquote(rest[hash_pos+1:])
+                        rest = rest[:hash_pos]
+                else:
+                    rest, name = rest.split('#', 1)
+                    name = unquote(name)
+            
             params_str = ""
             if '?' in rest:
                 rest, params_str = rest.split('?', 1)
@@ -168,11 +181,17 @@ class SubscriptionProcessor:
             uuid, server_port = rest.split('@', 1)
             server, port = server_port.rsplit(':', 1)
             params = parse_qs(params_str)
+            
+            # Очищаем flow от # и текста после него
+            flow_raw = params.get("flow", [""])[0]
+            if "#" in flow_raw:
+                flow_raw = flow_raw.split("#")[0]
+            
             return {
                 "uuid": uuid, "server": server, "port": int(port),
                 "security": params.get("security", ["none"])[0],
                 "transport_type": params.get("type", ["tcp"])[0],
-                "flow": params.get("flow", [""])[0],
+                "flow": flow_raw,
                 "sni": params.get("sni", [""])[0],
                 "fp": params.get("fp", [""])[0],
                 "alpn": params.get("alpn", [""])[0],
