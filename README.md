@@ -6,7 +6,7 @@
 Простой и мощный инструмент на Python для извлечения чистых VLESS-ссылок из подписок.
 
 > [!TIP]
-> **🔗 [Онлайн извлечение VLESS](https://vlessextractor.mooo.com/)**
+> **🔗 [Онлайн извлечение VLESS](https://vlessextractor.mooo.com:8443)**
 
 ## Русский / Russian
 
